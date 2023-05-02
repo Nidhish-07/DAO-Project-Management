@@ -26,12 +26,16 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg shadow-md py-2 relative flex items-center w-full justify-between bg-white dark:bg-[#212936]">
         <div className="px-6 w-full flex flex-wrap items-center justify-between">
           <div className="grow flex justify-between items-center p-2">
-            <a className="flex justify-start items-center space-x-3" href={"/"}>
+            <Link
+              to="/"
+              className="flex justify-start items-center space-x-3"
+              href={"/"}
+            >
               <FaUserSecret size={25} />
               <span className="invisible md:invisible dark:text-gray-300">
                 DAO
               </span>
-            </a>
+            </Link>
             <div className="flex justify-center item-center space-x-5">
               {darken ? (
                 <MdLightMode

@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 
 const Hero = () => {
   return (
@@ -11,7 +11,7 @@ const Hero = () => {
         Your Contributions:
         <span>
           <strong>{4} ETH</strong>
-          {2 === 2 && "YOu are now a stakeholder"}
+          {false && "YOu are now a stakeholder"}
         </span>
       </p>
       <hr className="my-6 border-gray-300 dark:border-gray-500" />
