@@ -3,6 +3,10 @@ import { createGlobalState } from "react-hooks-global-state";
 
 const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
   connectedAccount: "",
+  contract: null,
+  isStakeholder: false,
+  balance: 0,
+  mybalance: 0,
 });
 
 const truncate = (text, startChars, endChars, maxLength) => {

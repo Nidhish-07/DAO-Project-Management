@@ -2,11 +2,15 @@ import React from "react";
 import { FaUserSecret, FaMoon } from "react-icons/fa";
 import { MdLightMode } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { connectWallet } from "../Services";
+import { truncate, useGlobalState } from "../store";
 
 const Header = () => {
+  const [connectedAccount] = useGlobalState("connectedAccount");
   const [theme, setTheme] = React.useState(window.localStorage.theme);
   const themeColor = theme === "dark" ? "light" : "dark";
   const darken = theme === "dark" ? true : false;
+
   React.useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove(themeColor);
@@ -50,9 +54,14 @@ const Header = () => {
                   onClick={toggleLight}
                 />
               )}
-              <button className="px-4 py-2.5 bg-blue-600 font-medium text-sm leading-tight uppercase rounded-full shadow-md shadow-gray-400 hover:bg-blue-700  focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg  dark:shadow-transparent hover:shadow-lg transition duration-150 ease-in-out dark:text-blue-500 dark:border dark:border-blue-500 dark:bg-transparent">
-                Connect Wallet
-              </button>
+              {truncate(connectedAccount, 4, 4, 11) || (
+                <button
+                  className="px-4 py-2.5 bg-blue-600 font-medium text-sm leading-tight uppercase rounded-full shadow-md shadow-gray-400 hover:bg-blue-700  focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg  dark:shadow-transparent hover:shadow-lg transition duration-150 ease-in-out dark:text-blue-500 dark:border dark:border-blue-500 dark:bg-transparent "
+                  onClick={connectWallet}
+                >
+                  Connect Wallet
+                </button>
+              )}
             </div>
           </div>
         </div>
