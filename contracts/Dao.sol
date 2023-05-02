@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity ^0.8.5;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
@@ -8,10 +8,16 @@ contract DAO is ReentrancyGuard, AccessControl {
     bytes32 private immutable CONTRIBUTOR_ROLE = keccak256("CONTRIBUTOR");
     bytes32 private immutable STAKEHOLDER_ROLE = keccak256("STAKEHOLDER");
     uint256 immutable MIN_STAKEHOLDER_CONTRIBUTION = 1 ether;
-
+    // uint32 immutable MIN_VOTE_DURATION = 1 weeks;
     uint32 immutable MIN_VOTE_DURATION = 5 minutes;
     uint256 totalProposals;
     uint256 public daoBalance;
+
+    mapping(uint256 => ProposalStruct) private raisedProposals;
+    mapping(address => uint256[]) private stakeholderVotes;
+    mapping(uint256 => VotedStruct[]) private votedOn;
+    mapping(address => uint256) private contributors;
+    mapping(address => uint256) private stakeholders;
 
     struct ProposalStruct {
         uint256 id;
@@ -41,12 +47,6 @@ contract DAO is ReentrancyGuard, AccessControl {
         address indexed beneficiary,
         uint256 amount
     );
-
-    mapping(uint256 => ProposalStruct) private raisedProposals;
-    mapping(address => uint256[]) private stakeholderVotes;
-    mapping(uint256 => VotedStruct[]) private votedOn;
-    mapping(address => uint256) private contributors;
-    mapping(address => uint256) private stakeholders;
 
     modifier stakeholderOnly(string memory message) {
         require(hasRole(STAKEHOLDER_ROLE, msg.sender), message);

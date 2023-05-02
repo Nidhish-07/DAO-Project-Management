@@ -2,7 +2,6 @@
   "name": "dao",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -23,7 +22,8 @@
     "react-identicons": "^1.2.5",
     "react-moment": "^1.1.2",
     "react-toastify": "^9.0.1",
-    "recharts": "^2.1.9"
+    "recharts": "^2.1.9",
+    "@truffle/hdwallet-provider": "^2.1.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
