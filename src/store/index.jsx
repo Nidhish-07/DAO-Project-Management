@@ -7,6 +7,8 @@ const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
   isStakeholder: false,
   balance: 0,
   mybalance: 0,
+  createModal: "scale-0",
+  proposals: [],
 });
 
 const truncate = (text, startChars, endChars, maxLength) => {

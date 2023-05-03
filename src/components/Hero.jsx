@@ -2,10 +2,11 @@ import React from "react";
 
 import { toast } from "react-toastify";
 import { performContribute } from "../Services";
-import { useGlobalState } from "../store";
+import { setGlobalState, useGlobalState } from "../store";
 
 const Hero = () => {
   const [amount, setAmount] = React.useState("");
+  const [proposals] = useGlobalState("proposals");
   const [isStakeholder] = useGlobalState("isStakeholder");
   const [balance] = useGlobalState("balance");
   const [mybalance] = useGlobalState("mybalance");
@@ -18,10 +19,16 @@ const Hero = () => {
     toast.success("Contribution received!");
     setAmount("");
   };
+
+  const opened = () =>
+    proposals.filter(
+      (proposal) => new Date().getTime() < Number(proposal.duration + "000")
+    ).length;
   return (
     <div className="p-8 ">
       <h2 className="font-semibold text-3xl mb-5 ">
-        {} Proposals currently active
+        {opened()} Proposal{opened() == 1 ? "" : "s"} Proposals currently
+        actives
       </h2>
       <p>
         Current balance:
@@ -56,7 +63,10 @@ const Hero = () => {
           Contribute
         </button>{" "}
         {isStakeholder && (
-          <button className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-sm leading-tight uppercase shadow-md rounded-full hover:bg-blue-700 shadow-gray-500 dark:shadow-transparent transition duration-150 ease-in-out  ">
+          <button
+            className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-sm leading-tight uppercase shadow-md rounded-full hover:bg-blue-700 shadow-gray-500 dark:shadow-transparent transition duration-150 ease-in-out  "
+            onClick={() => setGlobalState("createModal", "scale-100")}
+          >
             Proposal
           </button>
         )}
