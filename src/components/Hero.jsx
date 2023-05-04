@@ -27,8 +27,7 @@ const Hero = () => {
   return (
     <div className="p-8 ">
       <h2 className="font-semibold text-3xl mb-5 ">
-        {opened()} Proposal{opened() == 1 ? "" : "s"} Proposals currently
-        actives
+        {opened()} Proposal{opened() == 1 ? "" : "s"} currently active
       </h2>
       <p>
         Current balance:

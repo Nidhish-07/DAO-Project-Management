@@ -33,7 +33,6 @@ const Proposals = () => {
     toast.success("Beneficiary successfully Paid Out!");
   };
 
- 
   return (
     <div className="flex flex-col p-8">
       <div className="flex justify-center item-center " role="group">
@@ -123,11 +122,11 @@ const Proposals = () => {
                         proposal.upvotes > proposal.downvotes ? (
                           !proposal.paid ? (
                             <button
-                              className="dark:border rounded-full px-6 py-2.5 dark:border-red-600
-                                dark:text-red-600 dark:bg-transparent font-medium text-xs leading-tight
-                                uppercase hover:border-red-700 focus:border-red-700
-                                focus:outline-none focus:ring-0 active:border-red-800
-                                transition duration-150 ease-in-out text-white bg-red-600"
+                              className="dark:border rounded-full px-6 py-2.5 dark:border-orange-600
+                                dark:text-orange-600 dark:bg-transparent font-medium text-xs leading-tight
+                                uppercase hover:border-orange-700 focus:border-orange-700
+                                focus:outline-none focus:ring-0 active:border-orange-800
+                                transition duration-150 ease-in-out text-white bg-orange-600"
                               onClick={() => handlePayout(proposal.id)}
                             >
                               Payout
